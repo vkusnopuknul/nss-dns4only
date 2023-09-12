@@ -219,6 +219,8 @@ it in ``/lib/`` yourself::
     sed -i -e '/^hosts:.*/s/ dns\( \|$\)/ dns4only [!UNAVAIL=return] dns\1/' \
         /etc/nsswitch.conf
 
+In debian bookworm you need to link libnss_dns.so. After this build work correctly.
+ln -s /lib/x86_64-linux-gnu/libnss_dns.so.2 /usr/lib/x86_64-linux-gnu/libnss_dns.so
 
 Technical background/history
 ----------------------------
