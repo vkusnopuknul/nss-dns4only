@@ -67,8 +67,8 @@ nss-dns4suffix.o: nss-dns4only.c
 	  -Wl,-soname=$@ -Wl,--version-script=nss-dns4only.sym \
 	  $^ $(LIBS)
 	objdump -p $@ | grep NEEDED
-	nm $@ | grep @@GLIBC_
-	ver=$$(nm $@ | sed -e '/@@GLIBC_[0-9]/!d;s/.*@@//' | sort -Vur | \
+	nm $@ | grep @GLIBC_
+	ver=$$(nm $@ | sed -e '/@GLIBC_[0-9]/!d;s/.*@//' | sort -Vur | \
 	  head -n1); \
 	  if test "$$ver" != "GLIBC_2.4"; then echo $$ver; rm $@; false; fi
 	@echo 'Built $@ with minimal dependencies'; echo
